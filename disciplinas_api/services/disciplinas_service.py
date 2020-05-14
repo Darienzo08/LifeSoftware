@@ -12,34 +12,59 @@ from infra.disciplinas_dao import \
 from model.disciplina import Disciplina
 
 def listar():
-    pass
+    return [disciplina.__dict__() for disciplina in dao_listar()]
 
 def localizar_disciplina(id):
-    pass
+    return dao_consultar(id)
 
 def localizar(id):
-    pass
+    disciplina = localizar_disciplina(id)
+    return disciplina.__dict__() if disciplina != None else None
     
 def localizar_por_nome(nome):
-    pass
+    disciplina = dao_consultar_por_nome(nome)
+    return disciplina.__dict__() if disciplina != None else None
 
 def criar(dados):
-    pass
+    if localizar_por_nome(dados['nome']) == None:
+        disciplina = Disciplina.criar(dados)
+        return dao_cadastrar(disciplina).__dict__()
+    return None
 
 def remover(id):
-    pass
+    disciplina = localizar_disciplina(id)
+    if disciplina == None:
+        return False
+    return dao_remover(disciplina)
 
 def atualizar(dados):
-    pass
+    if localizar_por_nome(dados['nome']) != None:
+        disciplina = Disciplina.criar(dados)
+        dao_alterar(disciplina)
+        return localizar(disciplina.id)
+    return None
     
 def resetar():
-    pass
+    disciplinas = listar()
+    for disciplina in disciplinas:
+        dao_remover(disciplina)
 
 def cadastrar_aluno(dados):
-    pass
-    
+    if localizar_disciplina(dados['id']) == None:
+        return None
+    disciplina = Disciplina.criar(dados)
+    dao_cadastrar_aluno(disciplina, dados['aluno_id'])
+    return disciplina.alunos
+
 def remover_aluno(dados):
-    pass
-    
+    if localizar_disciplina(dados['id']) == None:
+        return None
+    disciplina = Disciplina.criar(dados)
+    dao_remover_aluno(disciplina, dados['aluno_id'])
+    return 'Aluno removido'
+
 def consultar_alunos(dados):
-    pass
+    if localizar_disciplina(dados['id']) == None:
+        return None
+    disciplina = Disciplina.criar(dados)
+    return dao_consultar_alunos(disciplina) 

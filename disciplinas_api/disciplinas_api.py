@@ -38,6 +38,9 @@ def renderizar_pagina(disciplina='', alunos_disciplina='', msg_cadastrar_pre='',
         alunos=alunos if alunos != None else [], \
         alunos_disciplina = alunos_disciplina)
 
+def internal_cadastrar_disciplina(dados_disciplina):
+    disciplina = service_criar(dados_disciplina)
+    return disciplina
     
 @disciplinas_app.route('/disciplinas')
 def listar_disciplinas():
@@ -45,12 +48,27 @@ def listar_disciplinas():
 
 @disciplinas_app.route('/disciplinas', methods=['POST'])
 def cadastrar_disciplina():
-    pass
+    if request.form:
+        nova_disciplina = {"nome": request.form["nome"], "professor_id": request.form["professor_id"]}
+    else:
+        nova_disciplina = request.get_json()
+    if nova_disciplina == None:
+        return jsonify({'erro':'dados não informados corretamente:', 'dados':nova_disciplina}), 400
+    disciplina = internal_cadastrar_disciplina(nova_disciplina)
+    if disciplina == None:
+        return jsonify({'erro':'disciplina ja existe'}), 400
+    return jsonify(disciplina)
+
     
 @disciplinas_app.route('/site/disciplinas', methods=['POST'])
 def cadastrar_disciplina_site():
-    return renderizar_pagina(msg_cadastrar_pre="Disciplina não pôde ser cadastrada! ")
-    return renderizar_pagina()
+    if request.form["nome"] == None or request.form["professor_id"] == None:
+        return jsonify({'erro':'dados não informados corretamente:'}), 400
+    nova_disciplina = {"nome" :request.form["nome"], "professor_id" : request.form["professor_id"]}
+    disciplina = internal_cadastrar_disciplina(nova_disciplina)
+    if disciplina == None:
+        return renderizar_pagina("index.html")
+    return renderizar_pagina("index.html", disciplina=service_listar(), alunos_disciplina = listar_alunos())
 
 @disciplinas_app.route('/disciplinas/<int:id>', methods=['PUT'])
 def alterar_disciplina(id):
