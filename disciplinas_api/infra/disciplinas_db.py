@@ -23,6 +23,7 @@ def init():
         popularDb(cursor, "Desenvolvimento de aplic. distribuidas", 1)
         popularDb(cursor, "Estrutura de dados", 2)
         popularDb(cursor, "LPT 1", 3)
+        popularDb(cursor, "OPE 1", 4)
     except:
         pass
     cursor.close()

@@ -24,6 +24,7 @@ def init():
         popularDb(cursor, 1, 1)
         popularDb(cursor, 2, 2)
         popularDb(cursor, 3, 3)
+        popularDb(cursor, 4, 4)
     except:
         pass
     cursor.close()
