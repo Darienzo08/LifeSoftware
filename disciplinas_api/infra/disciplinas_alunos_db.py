@@ -5,11 +5,16 @@ table_name = "disciplina_aluno"
 
 sql_create_table = f"CREATE TABLE IF NOT EXISTS {table_name} (id integer PRIMARY KEY AUTOINCREMENT, disciplina_id int NOT NULL, aluno_id int NOT NULL)"
 
+
 def createTable(cursor, sql):
     cursor.execute(sql)
 
+
 def popularDb(cursor, disciplina_id, aluno_id):
-    pass
+    sql_create_table = f"""CREATE TABLE IF NOT EXISTS {table_name} (
+        id integer PRIMARY KEY AUTOINCREMENT, disciplina_id int NOT NULL, aluno_id int NOT NULL,
+        UNIQUE(disciplina_id, aluno_id));"""
+
 
 def init():
     connection = sqlite3.connect(db_name)
@@ -24,6 +29,6 @@ def init():
     cursor.close()
     connection.commit()
     connection.close()
-    
-init()
 
+
+init()
