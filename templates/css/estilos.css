@@ -1,0 +1,31 @@
+.container {
+    text-align: center;
+}
+
+.h1 {
+    font-size: 50px;  
+}
+
+.container-div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-card {
+    width: 30%;
+    height: 700px;
+    background-color: mediumpurple;
+    border: solid 0.5px black;
+    border-radius: 20px;
+    margin-top: 30px;
+
+}
+.container-card:hover {
+        
+        transform: scale(1.1);
+        border-color: rgb(113, 89, 193);
+}
+
+.lista {
+    list-style-type: none;
+}
