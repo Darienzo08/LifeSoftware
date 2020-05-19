@@ -1,14 +1,49 @@
-body {
-    background-color: black;
-    overflow: hidden;
+/*global*/
+
+@font-face {
+    font-family: PassionOne;
+    src: url(../global/PassionOne-Bold.otf);
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+:root {
+    --main-purple:#716dff;
+    --main-blue:#0997FF;
+    --main-black: #000000;
+    --main-white: #ffffff;
+    --main-gray: #E6E6E6;
+}
+
+body {
+    background-color: var(--main-black);
+    overflow: hidden;
+    color: var(--main-white);
+}
 .container {
     text-align: center;
 }
 
-.h1 {
-    font-size: 50px;  
+.container-title {
+    font-size: 63px;
+    color: var(--main-purple);
+    font-family: PassionOne;
+    letter-spacing: 0.2rem;
 }
 
 .container-div {
@@ -19,15 +54,15 @@ body {
 .container-card {
     width: 30%;
     height: 700px;
-    background-color: gray;
-    border: solid 0.5px black;
+    background-color: var(--main-color);
+    border: solid 0.5px var(--main-blue)    ;
     border-radius: 20px;
     margin-top: 30px;
 }
-.container-card:hover {
-        
-        transform: scale(1.1);
-        border-color: rgb(113, 89, 193);
+.container-card:hover {      
+    transform: scale(1.1);
+    box-shadow: inset 0 0 0.6em var(--main-purple);
+    border-color: rgb(113, 89, 193);
 }
 
 .lista {
