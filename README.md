@@ -4,7 +4,7 @@ Repositório referente à Atividade Contínua 05 de D.A.D.
 ## Gerente comercial: João Vitor D'Arienzo Melo e Silva
 
 # Time Front-end:
-## Líder: Gustavo Andrade Silva
+## Líder: Gustavo Silva Andrade
 * Arthur Felix
 * Matheus Manoel Espindola
 * Henrique Lelis
