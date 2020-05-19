@@ -1,3 +1,8 @@
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
 .container {
     text-align: center;
 }
@@ -14,11 +19,10 @@
 .container-card {
     width: 30%;
     height: 700px;
-    background-color: mediumpurple;
+    background-color: gray;
     border: solid 0.5px black;
     border-radius: 20px;
     margin-top: 30px;
-
 }
 .container-card:hover {
         
@@ -28,4 +32,31 @@
 
 .lista {
     list-style-type: none;
+}
+
+/* Squares */
+
+.squares li {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0.15 );
+    display: block;
+    position: absolute;
+    bottom: -40px;
+    animation: up 2s infinite;
+    animation-direction: alternate;
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(0) ;
+    }
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-800px) rotate(960deg);
+    }
 }
