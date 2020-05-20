@@ -67,7 +67,7 @@ class Disciplina():
     @staticmethod    
     def criar_com_id(id, nome, professor_id):
         try:
-            disciplina = Disciplina(nome=nome, professor_id=professor)
+            disciplina = Disciplina(nome=nome, professor_id=professor_id)
             disciplina.associar_id(id)
             return disciplina
         except Exception as e:
