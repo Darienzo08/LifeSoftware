@@ -82,10 +82,9 @@ def remover(disciplina):
 def cadastrar_aluno(disciplina, aluno_id):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
         sql = f"INSERT INTO {model_name_relationship} (disciplina_id, aluno_id) VALUES (?, ?)"
-        result = cursor.execute(sql, (disciplina.id, aluno_id.id))
+        result = cursor.execute(sql, (disciplina, aluno_id))
         connection.commit()
         if cursor.lastrowid:
-            aluno_id.associar_id(cursor.lastrowid)
             return aluno_id, disciplina
         else:
             return None

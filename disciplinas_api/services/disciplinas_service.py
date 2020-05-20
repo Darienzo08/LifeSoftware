@@ -52,9 +52,8 @@ def resetar():
 def cadastrar_aluno(dados):
     if localizar_disciplina(dados['id']) == None:
         return None
-    disciplina = Disciplina.criar(dados)
-    dao_cadastrar_aluno(disciplina, dados['aluno_id'])
-    return disciplina.alunos
+    dao_cadastrar_aluno(dados['id'], dados['aluno_id'])
+    return localizar(dados['id'])
 
 def remover_aluno(dados):
     if localizar_disciplina(dados['id']) == None:
