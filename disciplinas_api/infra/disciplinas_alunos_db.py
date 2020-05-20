@@ -3,13 +3,20 @@ import sqlite3
 db_name = "disciplinas.db"
 table_name = "disciplina_aluno"
 
-sql_create_table = f"CREATE TABLE IF NOT EXISTS {table_name} (id integer PRIMARY KEY AUTOINCREMENT, disciplina_id int NOT NULL, aluno_id int NOT NULL)"
+# sql_create_table = f"CREATE TABLE IF NOT EXISTS {table_name} (id integer PRIMARY KEY AUTOINCREMENT, disciplina_id int NOT NULL, aluno_id int NOT NULL)"
+sql_create_table = f"""CREATE TABLE IF NOT EXISTS {table_name} (
+        id integer PRIMARY KEY AUTOINCREMENT, disciplina_id int NOT NULL, aluno_id int NOT NULL,
+        UNIQUE(disciplina_id, aluno_id));"""
+
 
 def createTable(cursor, sql):
     cursor.execute(sql)
 
+
 def popularDb(cursor, disciplina_id, aluno_id):
-    pass
+    sql = f"INSERT INTO {table_name} (disciplina_id, aluno_id) VALUES (?, ?)"
+    cursor.execute(sql, (disciplina_id, aluno_id))
+
 
 def init():
     connection = sqlite3.connect(db_name)
@@ -19,11 +26,13 @@ def init():
         popularDb(cursor, 1, 1)
         popularDb(cursor, 2, 2)
         popularDb(cursor, 3, 3)
+        popularDb(cursor, 4, 4)
+        popularDb(cursor, 5, 5)
     except:
         pass
     cursor.close()
     connection.commit()
     connection.close()
-    
-init()
 
+
+init()
