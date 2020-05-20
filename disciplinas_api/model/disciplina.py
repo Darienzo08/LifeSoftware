@@ -14,33 +14,62 @@ class Disciplina():
         self.alunos = []
     
     def associar_id(self, id):
-        pass
-    
+        if self.id != None:
+            raise NaoTransienteException
+        self.id = id
+            
     def incluir_aluno(self, aluno_id):
-        pass
-    
+        if aluno_id in self.alunos:
+            raise AlunoJaInclusoException
+        self.alunos.append(aluno_id)
+
     def associar_alunos(self, alunos):
-        pass
+        for i in alunos:
+            self.alunos.append(i)
     
     def remover_aluno(self, aluno_id):
-        pass
+        self.alunos.remove(aluno_id)
     
     def verificar_transiente(self):
-        pass
+        if self.id != None:
+            return False
+        return True
     
     def validar(self):
-        pass
+        if self.id != None and self.nome != None:
+            return True
+        return False
     
     def atualizar(self, dados):
-        pass
+        try:
+            self.nome = dados['nome']
+        except Exception as e:
+            print('Problema ao atualizar disciplina')
+            print(e)
 
     def __dict__(self):
-        pass
+        dicionario = dict()
+        dicionario['id'] = self.id,
+        dicionario['nome'] = self.nome,
+        dicionario['professor_id'] = self.professor_id
+        return dicionario
 
     @staticmethod
     def criar(dados):
-        pass
+        try:
+            nome = dados['nome']
+            professor = dados['professor_id']
+            return Disciplina(nome=nome, professor_id=professor)
+        except Exception as e:
+            print('Problema ao criar a disciplina')
+            print(e)
     
     @staticmethod    
     def criar_com_id(id, nome, professor_id):
-        pass
+        try:
+            disciplina = Disciplina(nome=nome, professor_id=professor)
+            disciplina.associar_id(id)
+            return disciplina
+        except Exception as e:
+            print('Problema ao criar a disciplina e adicionar o id')
+            print(e)

@@ -1,32 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sala de Aula</title>
+        <title>Monitoramento</title>
+        <link href="css/estilos.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../templates/images/favicon.ico" />
+        
     </head>
     <body>
-        <p><b>Lista de Professores</b></p>
-        <div id="professores">
-        {% for item in professores %}
-        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}</b></li>
-        {% endfor %}
+        <div class="container">
+            <h1 class="container-title">MONITORAMENTO</h1>
+            <div class="container-div">
+                <form class="container-card" id="card-professor">
+                    <h2>Professores Cadastrados</h2>
+                    <ul class="lista">
+                        <li>
+                            {% for item in professores %}
+                        </li>
+                        <li>
+                            ID: {{ item['id'] }}, Nome: {{ item['nome'] }}
+                        </li>
+                        <li>
+                            {  % endfor %}
+                        </li>
+                    </ul>
+                </form>                
+                <form class="container-card" id="card-disciplina">
+                    <h2>Disciplinas Cadastradas</h2>
+                    <ul class="lista">
+                        <li>
+                            {% for item in professores %}
+                        </li>
+                        <li>
+                            ID: {{ item['id'] }}, Nome: {{ item['nome'] }}
+                        </li>
+                        <li>
+                            {  % endfor %}
+                        </li>
+                    </ul>
+                </form>
+                <form class="container-card" id="car-aluno">
+                    <h2>Alunos Cadastrados</h2>
+                    <ul class="lista">
+                        <li>
+                            {% for item in professores %}
+                        </li>
+                        <li>
+                            ID: {{ item['id'] }}, Nome: {{ item['nome'] }}
+                        </li>
+                        <li>
+                            {  % endfor %}                       
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
         
-        <br>
+        <ul class="squares"></ul>
         
-        <p><b>Lista de Disciplinas</b></p>
-        <div id="disciplinas">
-        {% for item in disciplinas %}
-        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}</b></li>
-        {% endfor %}
-        </div>
-        
-        <br>
-        
-        <p><b>Lista de Alunos</b></p>
-        <div id="alunos">
-        {% for item in alunos %}
-        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}</b></li>
-        {% endfor %}
-        </div>
+        <script src="../templates/js/script.js"></script>
     </body>
-</html>
+    </html>
