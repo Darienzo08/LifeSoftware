@@ -23,5 +23,23 @@ for (let i = 0; i < 11; i++) {
     li.style.animationTimingFunction = `cubic-bezier(${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random()})`
 
     ulSquares.appendChild(li)
-
 }
+
+/* Create List */
+
+let btn = document.querySelector("#btn");
+let list = document.querySelector("lista");
+
+btn.addEventListener("click", function() {
+    fetch('url')
+    .then(function(response) {
+        return response.json();        
+    })
+    .then(function(response) {
+        response.data.forEach(function(user) {
+            let item = document.createElement("li");
+
+            item.innerHTML = '<span>' + user.name + '<span/>'
+        });
+    })
+})

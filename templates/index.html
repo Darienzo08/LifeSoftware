@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Monitoramento</title>
         <link href="css/estilos.css" rel="stylesheet">
         <link rel="shortcut icon" href="../templates/images/favicon.ico" />
@@ -38,8 +41,9 @@
                         </li>
                     </ul>
                 </form>
-                <form class="container-card" id="car-aluno">
+                <form class="container-card" id="card-aluno">
                     <h2>Alunos Cadastrados</h2>
+                    <button id="btn">Load pupils</button>
                     <ul class="lista">
                         <li>
                             {% for item in professores %}
@@ -58,5 +62,6 @@
         <ul class="squares"></ul>
         
         <script src="../templates/js/script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </body>
     </html>

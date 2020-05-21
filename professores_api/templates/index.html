@@ -2,19 +2,25 @@
 <html>
     <head>
         <title>Sala de Aula - Professores</title>
+        <link href="estilos.css" rel="stylesheet">
     </head>
     <body>
-        <H1> LMS - Impacta </H1>
-        <H2>Cadastro de Professores</H2>
-        <p><b>{{mensagem}}</b></p>
+
+        <div id="interface">
+        <figure class="txt">    
+
+
+        <H1 id="txt"><i>LifeSoftware</i></H1>
+        <H2 id="txt1">Cadastro de Professores</H2>
+        <p><b>Informe seu nome e RG</b></p>
         <br>
         <form action="/site/professores" method="POST">
             <table>
             <tr>
-            <td>Nome:</td><td><input type="text" id="nome" name="nome" autocomplete="off" /></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nome:</td><td><input type="text" id="nome" name="nome" autocomplete="off" /></td>
             </tr>
             <tr>
-            <td>RG:</td><td><input type="text" id="rg" name="rg" autocomplete="off" /></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RG:</td><td><input type="text" id="rg" name="rg" autocomplete="off" /></td>
             </tr>
             </table>
             <br>
@@ -30,11 +36,11 @@
         {% endfor %}
         </div>
         <H2>Remover Professores</H2>
-        <p><b>{{mensagem_remover}}</b></p>
+        <p><b>Informe seu Id</b></p>
         <form action="/site/professores/delete" method="POST">
             <table>
             <tr>
-            <td>Id:</td><td><input type="text" id="id" name="id" autocomplete="off" size="1"/></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id:</td><td><input type="text" id="id" name="id" autocomplete="off" size="1"/></td>
             </tr>
             </table>
             <br>
@@ -43,5 +49,7 @@
             <br>
             <br>
         </form>
+    </figure>
     </body>
 </html>
+</div>

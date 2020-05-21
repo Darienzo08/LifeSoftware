@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: PassionOne;
+    src: url(../global/PassionOne-Bold.otf);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../global/NotoSans-Regular.ttf)
+}
+
+
+body {
+   background-color: rgb(0, 0, 0);
+   color: #ffffff;
+   margin: 10px;
+   text-align: center;
+  
+         
+}
+
+div#interface {
+    
+    margin: 1px auto 0px auto;
+    box-shadow:  0px 0px 30px #716DFF;
+    padding: 15px;
+        
+    background: rgba(0, 0, 0, 0.644);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+figure.txt {
+    position: relative;
+    border: 1px solid #716DFF;
+    box-shadow: 1px 1px 20px #0997ff;
+    width: 500px;
+    
+}
+
+H1#txt {
+    color: #0997ff;
+    box-shadow: 5px 1px 30px #0997ff;
+    padding: 1px;
+    position: relative;
+
+
+    
+}
+
+H2#txt1 {
+    color: rgb(251, 250, 255);
+    
+  
+
+}
