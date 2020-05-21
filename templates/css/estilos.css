@@ -53,7 +53,7 @@ body {
 
 .container-card {
     width: 30%;
-    height: 700px;
+    height: 68vh;
     background-color: var(--main-color);
     border: solid 0.5px var(--main-blue)    ;
     border-radius: 20px;
