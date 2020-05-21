@@ -58,8 +58,7 @@ def cadastrar_aluno(dados):
 def remover_aluno(dados):
     if localizar_disciplina(dados['id']) == None:
         return None
-    disciplina = Disciplina.criar(dados)
-    dao_remover_aluno(disciplina, dados['aluno_id'])
+    dao_remover_aluno(dados['id'], dados['aluno_id'])
     return 'Aluno removido'
 
 def consultar_alunos(dados):

@@ -92,8 +92,9 @@ def cadastrar_aluno(disciplina, aluno_id):
 
 def remover_aluno(disciplina, aluno_id):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        sql = f"DELETE FROM {model_name} WHERE id = ?"
-        cursor.execute(sql, f"{aluno_id.id}")
+        cursor.execute(
+            f"DELETE FROM {model_name_relationship} WHERE aluno_id = ? AND disciplina_id = ?", (aluno_id, disciplina))
+
         connection.commit()
         if cursor.rowcount > 0:
             return True

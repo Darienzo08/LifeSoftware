@@ -20,7 +20,7 @@
             <td>Nome:</td><td><input type="text" id="nome" name="nome" autocomplete="off" /></td>
             </tr>
             <tr>
-            <td>Professor:</td><td><input type="text" id="professor" name="professor" autocomplete="off" /></td>
+            <td>Professor:</td><td><input type="text" id="professor_id" name="professor_id" autocomplete="off" /></td>
             </tr>
             </table>
             <br>
@@ -32,7 +32,7 @@
         <H2>Lista de Disciplinas</H2>
         <div id="disciplinas">
         {% for item in disciplinas %}
-        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}, Professor: {{ item['professor'] }}</b></li>
+        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}, Professor: {{ item['professor_id'] }}</b></li>
         {% endfor %}
         </div>
         <H2>Remover Disciplina</H2>
