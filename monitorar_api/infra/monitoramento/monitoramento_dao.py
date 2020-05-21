@@ -1,5 +1,5 @@
 import sqlite3
-from model.disciplina import Disciplina
+from model.disciplina import Monitoramento
 from contextlib import closing
 
 db_name = "monitoramentos.db"
@@ -12,11 +12,13 @@ def con():
 
 def listar():
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        cursor.execute(f"SELECT id, mensagem FROM {model_name}")
+        cursor.execute(
+            f"SELECT id, aluno, professor, disciplina FROM {model_name}")
         rows = cursor.fetchall()
         registros = []
-        for (id, mensagem) in rows:
-            monitoramento = Monitoramento.criar_com_id(id, mensagem)
+        for (id, aluno, professor, disciplina) in rows:
+            monitoramento = Monitoramento.criar_com_id(
+                id, aluno, professor, disciplina)
             if monitoramento != None:
                 registros.append(monitoramento)
         return registros
@@ -25,28 +27,28 @@ def listar():
 def consultar(id):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
         cursor.execute(
-            f"SELECT id, mensagem FROM {model_name} WHERE id = ?", (int(id),))
+            f"SELECT id, aluno, professor, disciplina FROM {model_name} WHERE id = ?", (int(id),))
         row = cursor.fetchone()
         if row == None:
             return None
-        return Disciplina.criar_com_id(row[0], row[1])
+        return Disciplina.criar_com_id(row[0], row[1], row[2], row[3])
 
 
-def consultar_por_mensagem(mensagem):
+def consultar_por_mensagem(aluno, professor, disciplina):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
         cursor.execute(
-            f"SELECT id, mensagem FROM {model_name} WHERE mensagem = ?", (mensagem,))
+            f"SELECT id, aluno, professor, disciplina FROM {model_name} WHERE aluno, professor, disciplina = ?", (aluno, professor, disciplina,))
         row = cursor.fetchone()
         if row == None:
             return None
-        return Monitoramento.criar_com_id(row[0], row[1])
+        return Monitoramento.criar_com_id(row[0], row[1], row[2], row[3])
 
 
 def cadastrar(monitoramento):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        sql = f"INSERT INTO {model_name} (mensagem) VALUES (?)"
+        sql = f"INSERT INTO {model_name} (aluno, professor, disciplina) VALUES (?, ?, ?)"
         result = cursor.execute(
-            sql, (monitoramento.mensagem))
+            sql, (monitoramento.aluno, monitoramento.professor, monitoramento.disciplina))
         connection.commit()
         if cursor.lastrowid:
             monitoramento.associar_id(cursor.lastrowid)
@@ -57,9 +59,9 @@ def cadastrar(monitoramento):
 
 def alterar(monitoramento):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        sql = f"UPDATE {model_name} SET mensagem = ? WHERE id = ?"
+        sql = f"UPDATE {model_name} SET aluno = ?, professores = ?, disciplina = ?  WHERE id = ?"
         cursor.execute(
-            sql, (monitoramento.id, monitoramento.mensagem, monitoramento.professor_id))
+            sql, (monitoramento.id, monitoramento.aluno, monitoramento.professor, monitoramento.disciplina))
         connection.commit()
         if cursor.rowcount > 0:
             return True
