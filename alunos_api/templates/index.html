@@ -2,19 +2,28 @@
 <html>
     <head>
         <title>Sala de Aula - Alunos</title>
+        <link href="estilos.css" rel="stylesheet">
     </head>
+
+    
     <body>
-        <H1> LMS - Impacta </H1>
-        <H2>Cadastro de alunos</H2>
-        <p><b>{{mensagem}}</b></p>
+
+    <div id="interface">
+    <figure class="txt">
+   
+    
+
+        <H1 id="txt"><i>LifeSoftware</i></H1>
+        <H2 id="txt1">Cadastro de alunos</H2>
+        <p><b>Informe seu nome e matrícula</b></p>
         <br>
         <form action="/site/alunos" method="POST">
             <table>
             <tr>
-            <td>Nome:</td><td><input type="text" id="nome" name="nome" autocomplete="off" /></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nome:</td><td><input type="text" id="nome" name="nome" autocomplete="off" /></td>
             </tr>
             <tr>
-            <td>Matrícula:</td><td><input type="text" id="matricula" name="matricula" autocomplete="off" /></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matrícula:</td><td><input type="text" id="matricula" name="matricula" autocomplete="off" /></td>
             </tr>
             </table>
             <br>
@@ -22,6 +31,8 @@
             <br>
             <br>
             <br>
+
+
         </form>
         <H2>Lista de alunos</H2>
         <div id="alunos">
@@ -30,11 +41,11 @@
         {% endfor %}
         </div>
         <H2>Remover alunos</H2>
-        <p><b>{{mensagem_remover}}</b></p>
+        <p><b>Informe seu ID</b></p>
         <form action="/site/alunos/delete" method="POST">
             <table>
             <tr>
-            <td>Id:</td><td><input type="text" id="id" name="id" autocomplete="off" size="1"/></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id:</td><td><input type="text" id="id" name="id" autocomplete="off" size="1"/></td>
             </tr>
             </table>
             <br>
@@ -43,5 +54,9 @@
             <br>
             <br>
         </form>
+    </figure>
+    
     </body>
 </html>
+</div>
+

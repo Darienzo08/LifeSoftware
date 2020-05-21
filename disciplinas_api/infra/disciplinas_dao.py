@@ -103,8 +103,10 @@ def remover_aluno(disciplina, aluno_id):
 def consultar_alunos(disciplina):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
         cursor.execute(
-            f"SELECT id, disciplina_id, aluno_id FROM {model_name} WHERE nome = ?", (disciplina,))
-        row = cursor.fetchone()
-        if row == None:
-            return None
-        return Disciplina.criar_com_id(row[0], row[1], row[2])
+            f"SELECT aluno_id FROM {model_name_relationship} WHERE disciplina_id = ?", (disciplina,))
+        rows = cursor.fetchall()
+        registros = []
+        for aluno_id in rows:
+            if aluno_id != None:
+                registros.append(aluno_id[0])
+        return registros

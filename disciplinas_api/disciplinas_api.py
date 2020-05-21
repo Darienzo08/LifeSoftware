@@ -67,8 +67,8 @@ def cadastrar_disciplina_site():
     nova_disciplina = {"nome" :request.form["nome"], "professor_id" : request.form["professor_id"]}
     disciplina = internal_cadastrar_disciplina(nova_disciplina)
     if disciplina == None:
-        return renderizar_pagina(disciplina=disciplina)
-    return renderizar_pagina(disciplina=disciplina)
+        return renderizar_pagina()
+    return renderizar_pagina()
 
 @disciplinas_app.route('/disciplinas/<int:id>', methods=['PUT'])
 def alterar_disciplina(id):
@@ -101,11 +101,11 @@ def remover_disciplina(id):
 def remover_disciplina_site():
     id = request.form["id"]
     if id == None:
-        return render_template("index.html", disciplinas=service_listar(), mensagem = msg_cadastrar,msg_remover="Informe um Id válido para remover uma disciplina! " + msg_remover)
+        return renderizar_pagina()
     remover = service_remover(id)
     if remover == 1:
-        return render_template("index.html", disciplinas=service_listar(), mensagem = msg_cadastrar,msg_remover="Disciplina removida! " + msg_remover)
-    return render_template("index.html", disciplinas=service_listar(), mensagem = mensagem_inicial,msg_remover=f"Não foi possível remover a disciplina do id: {id}. {msg_remover}")
+        return renderizar_pagina()
+    return renderizar_pagina()
 
 @disciplinas_app.route('/disciplinas/resetar', methods=['DELETE'])
 def resetar():
@@ -114,7 +114,7 @@ def resetar():
 
 @disciplinas_app.route('/')
 def all():
-    return renderizar_pagina("index.html", disciplinas=service_listar(), mensagem = mensagem_inicial)
+    return renderizar_pagina()
 
 @disciplinas_app.route('/disciplinas/<int:disciplina_id>/alunos/listar', methods=['GET'])
 def listar_alunos_por_disciplina(disciplina_id):
@@ -126,10 +126,19 @@ def listar_alunos_por_disciplina(disciplina_id):
 @disciplinas_app.route('/site/disciplinas/alunos/listar', methods=['POST'])
 def listar_alunos_por_disciplina_site():
     disciplina_id = request.form["disciplinaid"]
+
     if disciplina_id == None:
-        return render_template('Informe id válido para disciplina')
-    listar = service_consultar_alunos(disciplina_id)
-    return render_template(disciplina=disciplina, )
+        return renderizar_pagina()
+
+    alunos = service_consultar_alunos(disciplina_id)
+    lista_aluno = []
+    
+    for aluno_id in alunos:
+        url = f'http://localhost:5001/alunos/{aluno_id}'
+        aluno = Req.get(url).json()
+        lista_aluno.append(aluno)
+
+    return renderizar_pagina(alunos_disciplina=lista_aluno)
 
 @disciplinas_app.route('/disciplinas/alunos', methods=['POST'])
 def cadastrar_aluno_por_disciplina():
@@ -148,14 +157,14 @@ def cadastrar_aluno_por_disciplina():
 def cadastar_aluno_por_disciplina_site():
     disciplina_id = request.form["disciplinaid"]
     if disciplina_id == None:
-        return renderizar_pagina(disciplina=disciplina)
+        return renderizar_pagina()
     aluno_id = request.form['alunoid']
     if aluno_id == None:
-        return renderizar_pagina(disciplina=disciplina)
+        return renderizar_pagina()
     dic = {'id': disciplina_id, 'aluno_id': aluno_id}
     service_cadastrar_aluno(dic)
     disciplina = localizar_disciplina(disciplina_id)
-    return renderizar_pagina(disciplina=disciplina)
+    return renderizar_pagina()
 
 
 @disciplinas_app.route('/disciplinas/<int:disciplina_id>/alunos/<int:aluno_id>', methods=['DELETE'])
@@ -182,6 +191,3 @@ def remover_aluno_por_disciplina_site():
     
 if __name__ == '__main__':
     disciplinas_app.run(host='localhost', port=5003)
-
-
-## falta renderizar as páginas

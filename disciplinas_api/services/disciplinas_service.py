@@ -63,7 +63,6 @@ def remover_aluno(dados):
     return 'Aluno removido'
 
 def consultar_alunos(dados):
-    if localizar_disciplina(dados['id']) == None:
+    if localizar_disciplina(dados) == None:
         return None
-    disciplina = Disciplina.criar(dados)
-    return dao_consultar_alunos(disciplina) 
+    return dao_consultar_alunos(dados)

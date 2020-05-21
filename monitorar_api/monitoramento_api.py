@@ -2,7 +2,7 @@
 from flask import Flask, jsonify
 from monitorar.monitoramento_service import listar_mudancas
 
-#monitoramento_db.init()
+monitoramento_db.init()
 
 monitoramento_app = Flask(__name__)
 
